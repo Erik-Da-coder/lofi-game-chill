@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pixel Garden Tapes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="assets/audio/rain_loop.mp3" as="audio" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="crt">
+    <div id="vignette"></div>
+    <div id="scanlines"></div>
+
+    <main id="room">
+      <!-- Background and wallpaper -->
+      <img id="room-bg" src="assets/images/room_bg.png" alt="Room background" />
+      <img id="wallpaper" src="assets/images/wallpapers/wallpaper_1.png" alt="Wallpaper" />
+
+      <!-- UI top bar -->
+      <header id="hud">
+        <div class="hud-left">
+          <span class="hud-item">OP: <strong id="op-count">0</strong></span>
+          <span class="hud-item">Tape: <strong id="tape-name">Rainy Day Beats</strong></span>
+          <span class="hud-item">Lamp: <strong id="lamp-mode">Warm</strong></span>
+          <span class="hud-item">Light: <strong id="light-level">Medium</strong></span>
+        </div>
+        <div class="hud-right">
+          <button class="btn" id="btn-save">Save</button>
+          <button class="btn" id="btn-reset">Reset</button>
+        </div>
+      </header>
+
+      <!-- Interactive objects -->
+      <section id="interactables">
+        <button id="watering-can" class="icon-btn" title="Watering can">
+          <img src="assets/images/ui/watering_can.png" alt="Watering can" />
+        </button>
+        <button id="blinds" class="icon-btn" title="Adjust blinds">
+          <img src="assets/images/ui/blinds.png" alt="Blinds" />
+        </button>
+        <button id="lamp" class="icon-btn" title="Cycle lamp">
+          <img src="assets/images/ui/lamp.png" alt="Lamp" />
+        </button>
+        <button id="cassette-deck" class="icon-btn" title="Flip tape">
+          <img src="assets/images/ui/cassette_deck.png" alt="Cassette deck" />
+        </button>
+        <button id="window" class="icon-btn" title="Look at window">
+          <img src="assets/images/ui/window.png" alt="Window" />
+        </button>
+      </section>
+
+      <!-- Plants grid -->
+      <section id="plants">
+        <div class="plant" data-id="fern">
+          <img class="plant-img" src="assets/images/plants/plant_fern.png" alt="Fern" />
+          <div class="plant-ui">
+            <button class="pill water">Water</button>
+            <button class="pill fert">Fertilize</button>
+          </div>
+          <div class="plant-status">
+            <span>Hydration: <strong class="hydration">50</strong></span>
+            <span>Nutrition: <strong class="nutrition">50</strong></span>
+            <span>Mood: <strong class="mood">Calm</strong></span>
+          </div>
+        </div>
+
+        <div class="plant" data-id="succulent">
+          <img class="plant-img" src="assets/images/plants/plant_succulent.png" alt="Succulent" />
+          <div class="plant-ui">
+            <button class="pill water">Water</button>
+            <button class="pill fert">Fertilize</button>
+          </div>
+          <div class="plant-status">
+            <span>Hydration: <strong class="hydration">45</strong></span>
+            <span>Nutrition: <strong class="nutrition">60</strong></span>
+            <span>Mood: <strong class="mood">Relaxed</strong></span>
+          </div>
+        </div>
+
+        <div class="plant" data-id="spider">
+          <img class="plant-img" src="assets/images/plants/plant_spider.png" alt="Spider plant" />
+          <div class="plant-ui">
+            <button class="pill water">Water</button>
+            <button class="pill fert">Fertilize</button>
+          </div>
+          <div class="plant-status">
+            <span>Hydration: <strong class="hydration">40</strong></span>
+            <span>Nutrition: <strong class="nutrition">40</strong></span>
+            <span>Mood: <strong class="mood">Mellow</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Unlockables panel -->
+      <section id="unlocks">
+        <h3>Unlocks</h3>
+        <div class="unlock-grid">
+          <button class="unlock" data-type="wallpaper" data-key="wallpaper_2" data-cost="50">Wallpaper: Soft Moss (50 OP)</button>
+          <button class="unlock" data-type="wallpaper" data-key="wallpaper_3" data-cost="75">Wallpaper: Retro Lines (75 OP)</button>
+          <button class="unlock" data-type="pot" data-key="pot_cozy" data-cost="40">Pot: Cozy (40 OP)</button>
+          <button class="unlock" data-type="pot" data-key="pot_modern" data-cost="60">Pot: Modern (60 OP)</button>
+          <button class="unlock" data-type="fish" data-key="fish_tank" data-cost="100">Fish Tank (100 OP)</button>
+        </div>
+      </section>
+
+      <!-- Fish tank (hidden until unlocked) -->
+      <img id="fish-tank" src="assets/images/ui/fish_tank.png" alt="Fish tank" class="hidden" />
+
+      <!-- Window modal -->
+      <div id="window-modal" class="modal hidden">
+        <div class="modal-content">
+          <h2>Quiet rain</h2>
+          <p>Take a breath. Watch the rain for a moment.</p>
+          <div class="rain-view"></div>
+          <button class="btn" id="close-window">Close</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Audio -->
+  <audio id="audio-rain" src="assets/audio/rain_loop.mp3" loop></audio>
+  <audio id="audio-cassette-click" src="assets/audio/cassette_click.mp3"></audio>
+  <audio id="audio-tape-flip" src="assets/audio/tape_flip.mp3"></audio>
+
+  <!-- Music tapes (swap src on flip) -->
+  <audio id="audio-music" src="assets/audio/lofi_tape_1.mp3" loop></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
